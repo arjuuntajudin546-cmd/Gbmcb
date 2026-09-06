@@ -1,0 +1,4632 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gamtaa Barattoota Magaalaa Caffee Bantii</title>
+
+<style>
+:root{
+  --blue:#1769aa;
+  --green:#16823b;
+  --red:#d62828;
+  --orange:#f59e0b;
+  --purple:#7c3aed;
+  --bg:#f4f7fb;
+  --white:#ffffff;
+  --text:#172033;
+  --muted:#667085;
+  --border:#e5e7eb;
+  --shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* ================= AUTH ================= */
+
+#authSection{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#1769aa,#16823b);
+}
+
+.auth-card{
+  width:100%;
+  max-width:480px;
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,.2);
+}
+
+.logo{
+  width:75px;
+  height:75px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--blue),var(--green));
+  color:white;
+  font-size:35px;
+}
+
+.auth-card h1{
+  text-align:center;
+  font-size:22px;
+  margin-bottom:8px;
+}
+
+.auth-card .subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:25px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px;
+  outline:none;
+  background:white;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color:var(--blue);
+}
+
+.btn{
+  border:none;
+  padding:12px 18px;
+  border-radius:10px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  background:var(--blue);
+  color:white;
+}
+
+.btn-green{
+  background:var(--green);
+  color:white;
+}
+
+.btn-red{
+  background:var(--red);
+  color:white;
+}
+
+.btn-orange{
+  background:var(--orange);
+  color:white;
+}
+
+.btn-purple{
+  background:var(--purple);
+  color:white;
+}
+
+.btn-light{
+  background:#eef2f7;
+  color:var(--text);
+}
+
+.full{
+  width:100%;
+}
+
+.auth-switch{
+  text-align:center;
+  margin-top:18px;
+  color:var(--muted);
+}
+
+.auth-switch button{
+  background:none;
+  border:none;
+  color:var(--blue);
+  font-weight:bold;
+}
+
+/* ================= SUCCESS ================= */
+
+#successSection{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.success-card{
+  max-width:500px;
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+
+.success-icon{
+  font-size:60px;
+  margin-bottom:15px;
+}
+
+/* ================= PORTAL ================= */
+
+#portalSection{
+  min-height:100vh;
+}
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:white;
+  border-bottom:1px solid var(--border);
+  box-shadow:0 3px 15px rgba(0,0,0,.05);
+}
+
+.nav-container{
+  max-width:1250px;
+  margin:auto;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.brand-logo{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--green));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+.brand-text{
+  min-width:0;
+}
+
+.brand-text h2{
+  font-size:15px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.brand-text small{
+  color:var(--muted);
+}
+
+.nav-links{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.nav-links button{
+  border:none;
+  background:transparent;
+  padding:9px 10px;
+  border-radius:8px;
+  color:var(--text);
+}
+
+.nav-links button:hover,
+.nav-links button.active{
+  background:#eaf3fb;
+  color:var(--blue);
+}
+
+.admin-btn{
+  background:#111827!important;
+  color:white!important;
+}
+
+.logout-btn{
+  background:#fee2e2!important;
+  color:var(--red)!important;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:25px 18px 50px;
+}
+
+.page{
+  display:block;
+}
+
+.page.hidden{
+  display:none!important;
+}
+
+.hero{
+  background:linear-gradient(135deg,var(--blue),var(--green));
+  color:white;
+  padding:35px;
+  border-radius:20px;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  opacity:.95;
+  line-height:1.6;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+}
+
+.card h2,
+.card h3{
+  margin-bottom:15px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.menu-card{
+  background:white;
+  padding:25px 15px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:.2s;
+}
+
+.menu-card:hover{
+  transform:translateY(-4px);
+}
+
+.menu-icon{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+.menu-card h3{
+  font-size:16px;
+  margin-bottom:5px;
+}
+
+.menu-card p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ================= FEED ================= */
+
+.post{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:18px;
+}
+
+.post-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--green));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  overflow:hidden;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.post-author{
+  font-weight:bold;
+}
+
+.post-time{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.post-text{
+  white-space:pre-wrap;
+  line-height:1.6;
+  margin-bottom:12px;
+}
+
+.post-media{
+  max-width:100%;
+  border-radius:12px;
+  margin-top:10px;
+}
+
+.post-actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+  border-top:1px solid var(--border);
+  padding-top:12px;
+}
+
+.post-actions button{
+  border:none;
+  background:#f3f4f6;
+  padding:8px 13px;
+  border-radius:8px;
+}
+
+.post-actions button:hover{
+  background:#e5e7eb;
+}
+
+/* ================= MEMBERS ================= */
+
+.search-box{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.search-box input{
+  flex:1;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px;
+}
+
+.member-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.member-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.member-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.member-info{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  margin:2px;
+}
+
+.badge-green{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.badge-red{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.badge-orange{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.badge-blue{
+  background:#dbeafe;
+  color:#1e40af;
+}
+
+/* ================= MESSAGES ================= */
+
+.message-layout{
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:15px;
+  min-height:550px;
+}
+
+.chat-list{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:15px;
+}
+
+.chat-user{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.chat-user:hover{
+  background:#f3f4f6;
+}
+
+.chat-window{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.chat-header{
+  padding:15px;
+  border-bottom:1px solid var(--border);
+  font-weight:bold;
+}
+
+.chat-messages{
+  flex:1;
+  padding:15px;
+  overflow-y:auto;
+  min-height:400px;
+}
+
+.msg{
+  margin-bottom:10px;
+  display:flex;
+}
+
+.msg.me{
+  justify-content:flex-end;
+}
+
+.msg span{
+  max-width:70%;
+  padding:10px 13px;
+  border-radius:13px;
+  background:#eef2f7;
+}
+
+.msg.me span{
+  background:#dbeafe;
+}
+
+.chat-form{
+  display:flex;
+  gap:8px;
+  padding:12px;
+  border-top:1px solid var(--border);
+}
+
+.chat-form input{
+  flex:1;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:11px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-head{
+  text-align:center;
+}
+
+.profile-photo{
+  width:120px;
+  height:120px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  background:#e5e7eb;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+}
+
+.profile-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.info-item{
+  background:#f8fafc;
+  padding:13px;
+  border-radius:10px;
+}
+
+.info-item strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.info-item span{
+  color:var(--muted);
+}
+
+/* ================= DONATION ================= */
+
+.bank-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+
+.bank{
+  padding:20px 10px;
+  border-radius:12px;
+  background:#f8fafc;
+  border:1px solid var(--border);
+  text-align:center;
+  font-weight:bold;
+}
+
+/* ================= MASTER CONTROL ================= */
+
+.master-header{
+  background:#111827;
+  color:white;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:20px;
+}
+
+.master-header h1{
+  margin-bottom:7px;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.stat{
+  background:white;
+  border-radius:14px;
+  padding:18px 10px;
+  text-align:center;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.stat .number{
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.stat small{
+  color:var(--muted);
+}
+
+.mc-section{
+  background:white;
+  border-radius:15px;
+  padding:20px;
+  margin-bottom:20px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.mc-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:15px;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:750px;
+}
+
+th,
+td{
+  border-bottom:1px solid var(--border);
+  padding:11px 8px;
+  text-align:left;
+  font-size:13px;
+}
+
+th{
+  background:#f8fafc;
+}
+
+.small-btn{
+  border:none;
+  padding:6px 9px;
+  border-radius:7px;
+  font-size:12px;
+  margin:2px;
+}
+
+.log-item{
+  padding:10px;
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+
+.log-item:last-child{
+  border-bottom:none;
+}
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .member-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .bank-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .stats-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:700px){
+  .nav-container{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .nav-links{
+    width:100%;
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+  }
+
+  .nav-links button{
+    white-space:nowrap;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
+
+  .grid,
+  .member-grid{
+    grid-template-columns:1fr;
+  }
+
+  .message-layout{
+    grid-template-columns:1fr;
+  }
+
+  .bank-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= AUTH ================= -->
+
+<section id="authSection">
+
+  <div class="auth-card">
+
+    <div class="logo">🎓</div>
+
+    <h1>GAMTAA BARATTOOTA</h1>
+
+    <p class="subtitle">
+      Magaalaa Caffee Bantii
+    </p>
+
+    <!-- LOGIN -->
+
+    <form id="loginForm">
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="Email kee galchi"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Password kee galchi"
+          required
+        >
+      </div>
+
+      <button class="btn btn-primary full" type="submit">
+        Seeni
+      </button>
+
+    </form>
+
+    <!-- REGISTER -->
+
+    <form id="registerForm" class="hidden">
+
+      <div class="form-group">
+        <label>Maqaa Guutuu</label>
+        <input
+          type="text"
+          id="regName"
+          placeholder="Maqaa kee"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          id="regEmail"
+          placeholder="example@gmail.com"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          id="regPassword"
+          placeholder="Password"
+          minlength="6"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Gosa Miseensaa</label>
+
+        <select id="regType">
+          <option value="STUDENT">Barataa</option>
+          <option value="OTHER">Kan Biraa</option>
+        </select>
+
+      </div>
+
+      <div id="studentFields">
+
+        <div class="form-group">
+          <label>Sadarkaa Barnootaa</label>
+          <input
+            type="text"
+            id="regEducation"
+            placeholder="Fakkeenya: University"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Grade / Level</label>
+          <input
+            type="text"
+            id="regGrade"
+            placeholder="Fakkeenya: 2nd Year"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Institution</label>
+          <input
+            type="text"
+            id="regInstitution"
+            placeholder="Maqaa mana barumsaa"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Department</label>
+          <input
+            type="text"
+            id="regDepartment"
+            placeholder="Department"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Study Year</label>
+          <input
+            type="text"
+            id="regStudyYear"
+            placeholder="Fakkeenya: 2026"
+          >
+        </div>
+
+      </div>
+
+      <button class="btn btn-green full" type="submit">
+        Galmaa'i
+      </button>
+
+    </form>
+
+    <div class="auth-switch">
+
+      <span id="loginSwitch">
+        Account hin qabduu?
+        <button type="button" onclick="showRegister()">
+          Galmaa'i
+        </button>
+      </span>
+
+      <span id="registerSwitch" class="hidden">
+        Account qabdaa?
+        <button type="button" onclick="showLogin()">
+          Seeni
+        </button>
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SUCCESS ================= -->
+
+<section id="successSection" class="hidden">
+
+  <div class="success-card">
+
+    <div class="success-icon">🎉</div>
+
+    <h2>Galatoomi!</h2>
+
+    <p id="successText" style="margin:15px 0;color:#667085;">
+      Galmeen kee milkaa'eera.
+    </p>
+
+    <button
+      class="btn btn-primary"
+      onclick="enterPortal()"
+    >
+      Gara Portalaatti Seeni
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PORTAL ================= -->
+
+<section id="portalSection" class="hidden">
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="nav-container">
+
+      <div class="brand">
+
+        <div class="brand-logo">🎓</div>
+
+        <div class="brand-text">
+          <h2 id="portalTitle">
+            Gamtaa Barattoota Magaalaa Caffee Bantii
+          </h2>
+
+          <small id="portalMotto">
+            Tokkummaa • Barnoota • Tajaajila
+          </small>
+        </div>
+
+      </div>
+
+      <div class="nav-links">
+
+        <button onclick="showPage('home')" id="navHome">
+          🏠 Home
+        </button>
+
+        <button onclick="showPage('feed')" id="navFeed">
+          📰 Feed
+        </button>
+
+        <button onclick="showPage('members')" id="navMembers">
+          👥 Members
+        </button>
+
+        <button onclick="showPage('messages')" id="navMessages">
+          💬 Message
+        </button>
+
+        <button onclick="showPage('profile')" id="navProfile">
+          👤 Profile
+        </button>
+
+        <button onclick="showPage('about')" id="navAbout">
+          ℹ️ Waa'ee
+        </button>
+
+        <button onclick="showPage('donation')" id="navDonation">
+          💚 Deeggarsa
+        </button>
+
+        <button
+          id="adminButton"
+          class="admin-btn hidden"
+          onclick="openMasterControl()"
+        >
+          👑 Master Control
+        </button>
+
+        <button class="logout-btn" onclick="logout()">
+          🚪 Logout
+        </button>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+  <main class="container">
+
+
+    <!-- ================= HOME ================= -->
+
+    <section id="homePage" class="page">
+
+      <div class="hero">
+
+        <h1 id="welcomeTitle">
+          Baga Nagaan Dhuftan!
+        </h1>
+
+        <p>
+          Gamtaa Barattoota Magaalaa Caffee Bantii
+          keessatti wal qunnamtii, barnoota,
+          deeggarsa fi misooma hawaasaa cimsuuf
+          waliin hojjenna.
+        </p>
+
+      </div>
+
+      <div class="grid">
+
+        <div class="menu-card" onclick="showPage('feed')">
+          <div class="menu-icon">📰</div>
+          <h3>Feed</h3>
+          <p>Oduu fi postii haaraa ilaali</p>
+        </div>
+
+        <div class="menu-card" onclick="showPage('members')">
+          <div class="menu-icon">👥</div>
+          <h3>Members</h3>
+          <p>Miseensota gamtaa ilaali</p>
+        </div>
+
+        <div class="menu-card" onclick="showPage('messages')">
+          <div class="menu-icon">💬</div>
+          <h3>Message</h3>
+          <p>Miseensota waliin haasa'i</p>
+        </div>
+
+        <div class="menu-card" onclick="showPage('profile')">
+          <div class="menu-icon">👤</div>
+          <h3>Profile</h3>
+          <p>Profile kee qindeessi</p>
+        </div>
+
+        <div class="menu-card" onclick="showPage('about')">
+          <div class="menu-icon">ℹ️</div>
+          <h3>Waa'ee Keenya</h3>
+          <p>Kaayyoo fi mul'ata keenya</p>
+        </div>
+
+        <div class="menu-card" onclick="showPage('donation')">
+          <div class="menu-icon">💚</div>
+          <h3>Deeggarsa</h3>
+          <p>Gamtaa keenya deeggeri</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= FEED ================= -->
+
+    <section id="feedPage" class="page hidden">
+
+      <div class="card">
+
+        <h2>📰 Feed</h2>
+
+        <form id="postForm">
+
+          <div class="form-group">
+
+            <textarea
+              id="postText"
+              rows="4"
+              placeholder="Maal yaadaa jirta?"
+              required
+            ></textarea>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Suuraa (optional)</label>
+
+            <input
+              type="file"
+              id="postImage"
+              accept="image/*"
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Video (optional)</label>
+
+            <input
+              type="file"
+              id="postVideo"
+              accept="video/*"
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Media URL (optional)</label>
+
+            <input
+              type="url"
+              id="postMediaUrl"
+              placeholder="https://..."
+            >
+
+          </div>
+
+          <button class="btn btn-primary">
+            Post Godhi
+          </button>
+
+        </form>
+
+      </div>
+
+      <div id="postsList"></div>
+
+    </section>
+
+
+    <!-- ================= MEMBERS ================= -->
+
+    <section id="membersPage" class="page hidden">
+
+      <div class="card">
+
+        <h2>👥 Members</h2>
+
+        <div class="search-box">
+
+          <input
+            type="text"
+            id="memberSearch"
+            placeholder="Maqaa, email, department..."
+            oninput="renderMembers()"
+          >
+
+        </div>
+
+      </div>
+
+      <div id="membersList" class="member-grid"></div>
+
+    </section>
+
+
+    <!-- ================= MESSAGES ================= -->
+
+    <section id="messagesPage" class="page hidden">
+
+      <div class="message-layout">
+
+        <div class="chat-list">
+
+          <h3 style="margin-bottom:12px;">
+            💬 Miseensota
+          </h3>
+
+          <input
+            id="chatSearch"
+            type="text"
+            placeholder="Barbaadi..."
+            style="
+              width:100%;
+              padding:10px;
+              border:1px solid #e5e7eb;
+              border-radius:9px;
+              margin-bottom:10px;
+            "
+            oninput="renderChatList()"
+          >
+
+          <div id="chatList"></div>
+
+        </div>
+
+        <div class="chat-window">
+
+          <div class="chat-header" id="chatHeader">
+            Miseensa tokko filadhu
+          </div>
+
+          <div class="chat-messages" id="chatMessages">
+
+            <div class="empty">
+              Nama haasa'uu barbaaddu filadhu.
+            </div>
+
+          </div>
+
+          <form id="messageForm" class="chat-form">
+
+            <input
+              id="messageInput"
+              placeholder="Ergaa barreessi..."
+              autocomplete="off"
+            >
+
+            <button class="btn btn-primary">
+              Ergi
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <section id="profilePage" class="page hidden">
+
+      <div class="card profile-head">
+
+        <div class="profile-photo" id="profilePhoto">
+          👤
+        </div>
+
+        <h2 id="profileName">
+          -
+        </h2>
+
+        <p id="profileEmail" style="color:#667085;">
+          -
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>📝 Profile Fooyyessi</h3>
+
+        <form id="profileForm">
+
+          <div class="form-group">
+
+            <label>Bio</label>
+
+            <textarea
+              id="profileBio"
+              rows="4"
+              placeholder="Waa'ee ofii keetii..."
+            ></textarea>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Suuraa Profile</label>
+
+            <input
+              type="file"
+              id="profileImage"
+              accept="image/*"
+            >
+
+          </div>
+
+          <button class="btn btn-primary">
+            Save Profile
+          </button>
+
+        </form>
+
+      </div>
+
+      <div class="card">
+
+        <h3>📋 Odeeffannoo</h3>
+
+        <div id="profileInfo" class="info-grid"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="aboutPage" class="page hidden">
+
+      <div class="hero">
+
+        <h1>ℹ️ Waa'ee Gamtaa</h1>
+
+        <p>
+          Gamtaan Barattoota Magaalaa Caffee Bantii
+          dhaabbata barattootaa kan walitti dhufeenya,
+          barnoota, tajaajila hawaasaa fi guddina
+          miseensotaa cimsuuf hojjetudha.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h2>🎯 Mission</h2>
+
+        <p>
+          Barattoota walitti fiduun, carraa barnootaa
+          fi tajaajila hawaasaa babal'isuun dhaloota
+          beekumsa qabu fi itti gaafatamummaa qabu
+          ijaaruu.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h2>🔭 Vision</h2>
+
+        <p>
+          Gamtaa barattootaa cimaa, amanamaa,
+          kalaqaa fi hawaasa isaa keessatti gahee
+          olaanaa qabu ijaaruu.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h2>🎯 Kaayyoo</h2>
+
+        <ul style="line-height:2;padding-left:20px;">
+
+          <li>Barnoota cimsuu</li>
+          <li>Tokkummaa barattootaa jabeessuu</li>
+          <li>Hawaasa tajaajiluu</li>
+          <li>Hoggansa fi dandeettii miseensotaa guddisuu</li>
+          <li>Kalaqaa fi entrepreneurship jajjabeessuu</li>
+
+        </ul>
+
+      </div>
+
+      <div class="card">
+
+        <h2>⭐ Values</h2>
+
+        <p>
+          Amanamummaa • Tokkummaa • Kabaja •
+          Itti gaafatamummaa • Tajaajila •
+          Obsa • Kalaqa
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h2>📢 Motto</h2>
+
+        <h2 style="color:var(--green);">
+          “Tokkummaan Humna Keenya!”
+        </h2>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= DONATION ================= -->
+
+    <section id="donationPage" class="page hidden">
+
+      <div class="hero">
+
+        <h1>💚 Deeggarsa</h1>
+
+        <p id="donationText">
+          Gamtaa keenya hojii barattootaa fi
+          hawaasaa keessatti deeggaruuf gumaacha
+          keessan ni barbaanna.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h2>🏦 Baankiiwwan</h2>
+
+        <div class="bank-grid">
+
+          <div class="bank">CBE</div>
+          <div class="bank">COOP</div>
+          <div class="bank">AWASH</div>
+          <div class="bank">OROMIA BANK</div>
+          <div class="bank">SIINQEE BANK</div>
+
+        </div>
+
+        <p style="margin-top:20px;color:#667085;">
+          Lakkoofsa herregaa sirrii fi odeeffannoo
+          gumaachaa yeroo barbaachisaa ta'etti
+          bulchiinsa gamtaa irraa mirkaneeffadhu.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= MASTER CONTROL ================= -->
+
+    <section id="masterControlPage" class="page hidden">
+
+      <div class="master-header">
+
+        <h1>👑 MASTER CONTROL PANEL</h1>
+
+        <p>
+          Founder qofaaf — Bulchiinsa guutuu portalaa
+        </p>
+
+      </div>
+
+
+      <!-- STATS -->
+
+      <div class="stats-grid">
+
+        <div class="stat">
+          <div class="number" id="statTotal">0</div>
+          <small>Total Members</small>
+        </div>
+
+        <div class="stat">
+          <div class="number" id="statActive">0</div>
+          <small>Active Members</small>
+        </div>
+
+        <div class="stat">
+          <div class="number" id="statAdmins">0</div>
+          <small>Admins</small>
+        </div>
+
+        <div class="stat">
+          <div class="number" id="statVerified">0</div>
+          <small>Verified</small>
+        </div>
+
+        <div class="stat">
+          <div class="number" id="statWarnings">0</div>
+          <small>Warnings</small>
+        </div>
+
+        <div class="stat">
+          <div class="number" id="statBlocked">0</div>
+          <small>Blocked</small>
+        </div>
+
+      </div>
+
+
+      <!-- MEMBER MANAGEMENT -->
+
+      <div class="mc-section">
+
+        <h2>👥 Member Management</h2>
+
+        <div class="search-box">
+
+          <input
+            id="mcMemberSearch"
+            placeholder="Maqaa / Email / Department..."
+            oninput="mcRenderMembers()"
+          >
+
+        </div>
+
+        <div id="mcMembersTable" class="table-wrap"></div>
+
+      </div>
+
+
+      <!-- ADMIN MANAGEMENT -->
+
+      <div class="mc-section">
+
+        <h2>🛡️ Admin Management</h2>
+
+        <div id="mcAdminsTable" class="table-wrap"></div>
+
+      </div>
+
+
+      <!-- CONTENT CONTROL -->
+
+      <div class="mc-section">
+
+        <h2>📰 Content Control</h2>
+
+        <div class="mc-actions">
+
+          <button
+            class="btn btn-light"
+            onclick="mcShowPosts()"
+          >
+            Ilaali Postii
+          </button>
+
+          <button
+            class="btn btn-red"
+            onclick="mcDeleteAllPosts()"
+          >
+            Delete All Posts
+          </button>
+
+          <button
+            class="btn btn-orange"
+            onclick="mcAnnouncementBox()"
+          >
+            📢 Announcement
+          </button>
+
+        </div>
+
+        <div id="mcPostsArea"></div>
+
+      </div>
+
+
+      <!-- COMMUNICATION -->
+
+      <div class="mc-section">
+
+        <h2>💬 Communication Activity</h2>
+
+        <button
+          class="btn btn-light"
+          onclick="mcShowMessageActivity()"
+        >
+          Message Activity Ilaali
+        </button>
+
+        <div id="mcMessageActivity"></div>
+
+      </div>
+
+
+      <!-- SYSTEM SETTINGS -->
+
+      <div class="mc-section">
+
+        <h2>⚙️ System Settings</h2>
+
+        <div class="form-group">
+
+          <label>Portal Name</label>
+
+          <input
+            id="settingPortalName"
+            type="text"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Motto</label>
+
+          <input
+            id="settingMotto"
+            type="text"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Donation Text</label>
+
+          <textarea
+            id="settingDonationText"
+            rows="3"
+          ></textarea>
+
+        </div>
+
+        <button
+          class="btn btn-primary"
+          onclick="mcSaveSettings()"
+        >
+          Save Settings
+        </button>
+
+      </div>
+
+
+      <!-- REGISTRATION SETTINGS -->
+
+      <div class="mc-section">
+
+        <h2>📝 Registration Settings</h2>
+
+        <div class="form-group">
+
+          <label>
+
+            <input
+              type="checkbox"
+              id="settingRegistration"
+            >
+
+            Registration Enabled
+
+          </label>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>
+
+            <input
+              type="checkbox"
+              id="settingVerification"
+            >
+
+            New Members Require Verification
+
+          </label>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>
+
+            <input
+              type="checkbox"
+              id="settingMessages"
+            >
+
+            Messaging Enabled
+
+          </label>
+
+        </div>
+
+        <button
+          class="btn btn-primary"
+          onclick="mcSaveRegistrationSettings()"
+        >
+          Save Registration Settings
+        </button>
+
+      </div>
+
+
+      <!-- ACTIVITY LOG -->
+
+      <div class="mc-section">
+
+        <h2>📜 Activity Log</h2>
+
+        <div id="activityLogs"></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   DATABASE / STORAGE
+========================================================= */
+
+const ADMIN_EMAIL = "admin@gamtaa.local";
+const ADMIN_PASSWORD = "GBAdmin2026!";
+
+const DEFAULT_SETTINGS = {
+  portalName:"Gamtaa Barattoota Magaalaa Caffee Bantii",
+  motto:"Tokkummaa • Barnoota • Tajaajila",
+  donationText:
+    "Gamtaa keenya hojii barattootaa fi hawaasaa keessatti deeggaruuf gumaacha keessan ni barbaanna."
+};
+
+const DEFAULT_REG_SETTINGS = {
+  registration:true,
+  verification:true,
+  messages:true
+};
+
+function saveData(key,value){
+  localStorage.setItem(key,JSON.stringify(value));
+}
+
+function getData(key, fallback){
+  const value = localStorage.getItem(key);
+
+  if(value === null){
+    return fallback;
+  }
+
+  try{
+    return JSON.parse(value);
+  }catch(e){
+    return fallback;
+  }
+}
+
+function uid(){
+  return "ID_" + Date.now() + "_" +
+    Math.random().toString(36).substring(2,8);
+}
+
+function escapeHTML(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function initials(name){
+  return String(name || "?")
+    .trim()
+    .split(/\s+/)
+    .slice(0,2)
+    .map(x=>x[0])
+    .join("")
+    .toUpperCase();
+}
+
+function safeUrl(url){
+
+  if(!url) return "";
+
+  try{
+
+    const u = new URL(url);
+
+    if(u.protocol === "http:" || u.protocol === "https:"){
+      return u.href;
+    }
+
+  }catch(e){}
+
+  return "";
+}
+
+
+/* =========================================================
+   FOUNDER
+========================================================= */
+
+const founder = {
+  id:"ADMIN",
+  name:"Hundeessaa Portalaa",
+  email:ADMIN_EMAIL,
+  type:"FOUNDER",
+  role:"admin",
+  verified:true,
+  blocked:false,
+  warning:""
+};
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+function currentUser(){
+  return getData("gbCurrentUser",null);
+}
+
+function allUsers(){
+  return getData("gbUsers",[]);
+}
+
+
+/* =========================================================
+   LOGIN / REGISTER UI
+========================================================= */
+
+function showLogin(){
+
+  document.getElementById("loginForm")
+    .classList.remove("hidden");
+
+  document.getElementById("registerForm")
+    .classList.add("hidden");
+
+  document.getElementById("loginSwitch")
+    .classList.remove("hidden");
+
+  document.getElementById("registerSwitch")
+    .classList.add("hidden");
+}
+
+function showRegister(){
+
+  const settings =
+    getData("gbRegistrationSettings",DEFAULT_REG_SETTINGS);
+
+  if(!settings.registration){
+
+    alert("Yeroo ammaa galmeen cufameera.");
+
+    return;
+  }
+
+  document.getElementById("loginForm")
+    .classList.add("hidden");
+
+  document.getElementById("registerForm")
+    .classList.remove("hidden");
+
+  document.getElementById("loginSwitch")
+    .classList.add("hidden");
+
+  document.getElementById("registerSwitch")
+    .classList.remove("hidden");
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+document.getElementById("loginForm")
+.addEventListener("submit",function(e){
+
+  e.preventDefault();
+
+  const email =
+    document.getElementById("loginEmail")
+    .value.trim()
+    .toLowerCase();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  /* FOUNDER LOGIN */
+
+  if(
+    email === ADMIN_EMAIL &&
+    password === ADMIN_PASSWORD
+  ){
+
+    saveData("gbCurrentUser",founder);
+
+    enterPortal();
+
+    return;
+  }
+
+
+  /* MEMBER LOGIN */
+
+  const users = allUsers();
+
+  const user = users.find(u =>
+    String(u.email).toLowerCase() === email &&
+    u.password === password
+  );
+
+  if(!user){
+
+    alert("Email ykn password sirrii miti.");
+
+    return;
+  }
+
+  if(user.blocked){
+
+    alert("Account kee blocked dha. Founder qunnami.");
+
+    return;
+  }
+
+  saveData("gbCurrentUser",user);
+
+  enterPortal();
+
+});
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+document.getElementById("registerForm")
+.addEventListener("submit",function(e){
+
+  e.preventDefault();
+
+  const settings =
+    getData(
+      "gbRegistrationSettings",
+      DEFAULT_REG_SETTINGS
+    );
+
+  if(!settings.registration){
+
+    alert("Registration yeroo ammaa cufameera.");
+
+    return;
+  }
+
+
+  const name =
+    document.getElementById("regName").value.trim();
+
+  const email =
+    document.getElementById("regEmail")
+    .value.trim()
+    .toLowerCase();
+
+  const password =
+    document.getElementById("regPassword").value;
+
+  const type =
+    document.getElementById("regType").value;
+
+
+  if(
+    email === ADMIN_EMAIL
+  ){
+
+    alert("Email kun hin eeyyamamu.");
+
+    return;
+  }
+
+
+  const users = allUsers();
+
+  if(
+    users.some(
+      u => String(u.email).toLowerCase() === email
+    )
+  ){
+
+    alert("Email kun duraan galmaa'eera.");
+
+    return;
+  }
+
+
+  const user = {
+
+    id:uid(),
+
+    name,
+
+    email,
+
+    password,
+
+    type,
+
+    education:
+      document.getElementById("regEducation").value.trim(),
+
+    grade:
+      document.getElementById("regGrade").value.trim(),
+
+    institution:
+      document.getElementById("regInstitution").value.trim(),
+
+    department:
+      document.getElementById("regDepartment").value.trim(),
+
+    studyYear:
+      document.getElementById("regStudyYear").value.trim(),
+
+    role:"member",
+
+    verified:
+      !settings.verification,
+
+    warning:"",
+
+    blocked:false,
+
+    bio:"",
+
+    photo:"",
+
+    createdAt:new Date().toISOString()
+
+  };
+
+
+  users.push(user);
+
+  saveData("gbUsers",users);
+
+  /* IMPORTANT:
+     Register booda user akka current useritti galcha
+  */
+
+  saveData("gbCurrentUser",user);
+
+  mcLog(
+    "REGISTER",
+    `${name} galmaa'e.`
+  );
+
+
+  document.getElementById("successText").textContent =
+    settings.verification
+      ? "Galmeen kee milkaa'eera. Founder mirkaneessuun booda account kee guutummaatti fayyadamuu dandeessa."
+      : "Galmeen kee milkaa'eera. Baga gara Gamtaa dhuftan!";
+
+
+  document.getElementById("authSection")
+    .classList.add("hidden");
+
+  document.getElementById("successSection")
+    .classList.remove("hidden");
+
+});
+
+
+/* =========================================================
+   ENTER PORTAL
+========================================================= */
+
+function enterPortal(){
+
+  const user = currentUser();
+
+  if(!user){
+
+    showLogin();
+
+    document.getElementById("successSection")
+      .classList.add("hidden");
+
+    document.getElementById("authSection")
+      .classList.remove("hidden");
+
+    return;
+  }
+
+
+  if(
+    user.id !== "ADMIN" &&
+    user.blocked
+  ){
+
+    alert("Account kee blocked dha.");
+
+    logout();
+
+    return;
+  }
+
+
+  document.getElementById("authSection")
+    .classList.add("hidden");
+
+  document.getElementById("successSection")
+    .classList.add("hidden");
+
+  document.getElementById("portalSection")
+    .classList.remove("hidden");
+
+
+  renderEverything();
+
+  showPage("home");
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout(){
+
+  localStorage.removeItem("gbCurrentUser");
+
+  document.getElementById("portalSection")
+    .classList.add("hidden");
+
+  document.getElementById("successSection")
+    .classList.add("hidden");
+
+  document.getElementById("authSection")
+    .classList.remove("hidden");
+
+  document.getElementById("loginForm").reset();
+
+  showLogin();
+
+}
+
+
+/* =========================================================
+   SPA NAVIGATION
+========================================================= */
+
+function showPage(pageName){
+
+  const user = currentUser();
+
+  if(!user){
+
+    logout();
+
+    return;
+  }
+
+
+  /* Founder-only page */
+
+  if(
+    pageName === "masterControl" &&
+    user.id !== "ADMIN"
+  ){
+
+    alert("Master Control Founder qofaaf.");
+
+    return;
+  }
+
+
+  const pageId = pageName + "Page";
+
+  const target =
+    document.getElementById(pageId);
+
+  if(!target) return;
+
+
+  document.querySelectorAll(".page")
+    .forEach(page => {
+      page.classList.add("hidden");
+    });
+
+  target.classList.remove("hidden");
+
+
+  /* ACTIVE NAV */
+
+  document.querySelectorAll(".nav-links button")
+    .forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+
+  const nav =
+    document.getElementById(
+      "nav" +
+      pageName.charAt(0).toUpperCase() +
+      pageName.slice(1)
+    );
+
+  if(nav){
+    nav.classList.add("active");
+  }
+
+
+  /* IMPORTANT:
+     window.scrollTo() hin jiru.
+     Kanaaf navigation yeroo godhattu
+     browser gara olii hin utaalu.
+  */
+
+
+  if(pageName === "feed"){
+    renderPosts();
+  }
+
+  if(pageName === "members"){
+    renderMembers();
+  }
+
+  if(pageName === "messages"){
+    renderChatList();
+  }
+
+  if(pageName === "profile"){
+    renderProfile();
+  }
+
+  if(pageName === "masterControl"){
+    mcRefresh();
+  }
+
+
+  /* URL hash update malee reload hin godhu */
+
+  try{
+    history.replaceState(
+      null,
+      "",
+      "#" + pageName
+    );
+  }catch(e){}
+
+}
+
+
+/* =========================================================
+   RENDER EVERYTHING
+========================================================= */
+
+function renderEverything(){
+
+  const user = currentUser();
+
+  if(!user) return;
+
+
+  const settings =
+    getData(
+      "gbSystemSettings",
+      DEFAULT_SETTINGS
+    );
+
+
+  document.getElementById("portalTitle")
+    .textContent = settings.portalName;
+
+  document.getElementById("portalMotto")
+    .textContent = settings.motto;
+
+  document.getElementById("donationText")
+    .textContent = settings.donationText;
+
+
+  document.getElementById("welcomeTitle")
+    .textContent =
+      `Baga Nagaan Dhuftan, ${user.name}!`;
+
+
+  /* ADMIN BUTTON */
+
+  const adminButton =
+    document.getElementById("adminButton");
+
+  if(user.id === "ADMIN"){
+
+    adminButton.classList.remove("hidden");
+
+  }else{
+
+    adminButton.classList.add("hidden");
+
+  }
+
+
+  /* MESSAGES */
+
+  const regSettings =
+    getData(
+      "gbRegistrationSettings",
+      DEFAULT_REG_SETTINGS
+    );
+
+  const messageNav =
+    document.getElementById("navMessages");
+
+  if(regSettings.messages){
+
+    messageNav.classList.remove("hidden");
+
+  }else{
+
+    messageNav.classList.add("hidden");
+
+  }
+
+
+  renderProfile();
+  renderPosts();
+  renderMembers();
+
+}
+
+
+/* =========================================================
+   POSTS
+========================================================= */
+
+function getPosts(){
+  return getData("gbPosts",[]);
+}
+
+
+function renderPosts(){
+
+  const area =
+    document.getElementById("postsList");
+
+  const posts =
+    getPosts().sort(
+      (a,b) =>
+        new Date(b.createdAt) -
+        new Date(a.createdAt)
+    );
+
+
+  if(!posts.length){
+
+    area.innerHTML =
+      `<div class="card empty">
+        Postiin amma hin jiru.
+      </div>`;
+
+    return;
+  }
+
+
+  area.innerHTML =
+    posts.map(post => {
+
+      const author =
+        post.authorName || "Unknown";
+
+      const liked =
+        (post.likes || [])
+          .includes(currentUser().id);
+
+
+      let media = "";
+
+
+      if(post.image){
+
+        media +=
+          `<img
+            class="post-media"
+            src="${post.image}"
+            alt="Post image"
+          >`;
+
+      }
+
+
+      if(post.video){
+
+        media +=
+          `<video
+            class="post-media"
+            src="${post.video}"
+            controls
+          ></video>`;
+
+      }
+
+
+      if(post.media){
+
+        const url = safeUrl(post.media);
+
+        if(url){
+
+          media +=
+            `<p style="margin-top:10px;">
+              🔗
+              <a
+                href="${escapeHTML(url)}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Media Link
+              </a>
+            </p>`;
+
+        }
+
+      }
+
+
+      return `
+
+        <article class="post">
+
+          <div class="post-header">
+
+            <div class="avatar">
+              ${escapeHTML(initials(author))}
+            </div>
+
+            <div>
+
+              <div class="post-author">
+                ${escapeHTML(author)}
+              </div>
+
+              <div class="post-time">
+                ${formatDate(post.createdAt)}
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="post-text">
+            ${escapeHTML(post.text)}
+          </div>
+
+          ${media}
+
+          <div class="post-actions">
+
+            <button onclick="toggleLike('${post.id}')">
+              ${liked ? "❤️" : "🤍"}
+              ${post.likes?.length || 0}
+            </button>
+
+            ${
+              post.authorId !== currentUser().id
+              ?
+              `<button onclick="startChat('${post.authorId}')">
+                💬 Message
+              </button>`
+              :
+              ""
+            }
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   CREATE POST
+========================================================= */
+
+document.getElementById("postForm")
+.addEventListener("submit",async function(e){
+
+  e.preventDefault();
+
+  const user = currentUser();
+
+  if(!user) return;
+
+
+  if(user.id === "ADMIN"){
+
+    alert(
+      "Founder account irraa post gochuun hin eeyyamamu. Member account fayyadami."
+    );
+
+    return;
+  }
+
+
+  const text =
+    document.getElementById("postText")
+    .value.trim();
+
+
+  if(!text){
+
+    alert("Post kee barreessi.");
+
+    return;
+  }
+
+
+  const imageFile =
+    document.getElementById("postImage")
+    .files[0];
+
+  const videoFile =
+    document.getElementById("postVideo")
+    .files[0];
+
+  const mediaUrl =
+    document.getElementById("postMediaUrl")
+    .value.trim();
+
+
+  const image =
+    imageFile
+      ? await fileToDataURL(imageFile)
+      : "";
+
+  const video =
+    videoFile
+      ? await fileToDataURL(videoFile)
+      : "";
+
+
+  const post = {
+
+    id:uid(),
+
+    authorId:user.id,
+
+    authorName:user.name,
+
+    text,
+
+    image,
+
+    video,
+
+    media:safeUrl(mediaUrl),
+
+    likes:[],
+
+    createdAt:new Date().toISOString()
+
+  };
+
+
+  const posts = getPosts();
+
+  posts.push(post);
+
+  saveData("gbPosts",posts);
+
+  mcLog(
+    "POST",
+    `${user.name} post haaraa hojjete.`
+  );
+
+
+  this.reset();
+
+  renderPosts();
+
+});
+
+
+function fileToDataURL(file){
+
+  return new Promise((resolve,reject)=>{
+
+    const reader =
+      new FileReader();
+
+    reader.onload =
+      () => resolve(reader.result);
+
+    reader.onerror =
+      reject;
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+/* =========================================================
+   LIKE
+========================================================= */
+
+function toggleLike(postId){
+
+  const user = currentUser();
+
+  const posts = getPosts();
+
+  const post =
+    posts.find(p => p.id === postId);
+
+  if(!post) return;
+
+  if(!post.likes){
+    post.likes = [];
+  }
+
+
+  const index =
+    post.likes.indexOf(user.id);
+
+
+  if(index >= 0){
+
+    post.likes.splice(index,1);
+
+  }else{
+
+    post.likes.push(user.id);
+
+  }
+
+
+  saveData("gbPosts",posts);
+
+  renderPosts();
+
+}
+
+
+/* =========================================================
+   MEMBERS
+========================================================= */
+
+function renderMembers(){
+
+  const area =
+    document.getElementById("membersList");
+
+  if(!area) return;
+
+
+  const search =
+    (
+      document.getElementById("memberSearch")
+      ?.value || ""
+    )
+    .toLowerCase()
+    .trim();
+
+
+  const users =
+    allUsers()
+    .filter(u => {
+
+      const text = [
+        u.name,
+        u.email,
+        u.department,
+        u.institution,
+        u.type
+      ]
+      .join(" ")
+      .toLowerCase();
+
+      return text.includes(search);
+
+    });
+
+
+  if(!users.length){
+
+    area.innerHTML =
+      `<div class="card empty">
+        Miseensi hin argamne.
+      </div>`;
+
+    return;
+  }
+
+
+  area.innerHTML =
+    users.map(user => `
+
+      <div class="member-card">
+
+        <div class="member-top">
+
+          <div class="avatar">
+            ${
+              user.photo
+              ?
+              `<img src="${user.photo}">`
+              :
+              escapeHTML(initials(user.name))
+            }
+          </div>
+
+          <div>
+
+            <strong>
+              ${escapeHTML(user.name)}
+            </strong>
+
+            <div>
+              ${
+                user.verified
+                ?
+                `<span class="badge badge-green">
+                  ✓ Verified
+                </span>`
+                :
+                `<span class="badge badge-orange">
+                  Unverified
+                </span>`
+              }
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="member-info">
+
+          📧 ${escapeHTML(user.email)}<br>
+
+          🎓 ${escapeHTML(user.institution || "-")}<br>
+
+          🏫 ${escapeHTML(user.department || "-")}<br>
+
+          📚 ${escapeHTML(user.grade || "-")}
+
+        </div>
+
+        <button
+          class="btn btn-light"
+          style="margin-top:12px;width:100%;"
+          onclick="startChat('${user.id}')"
+        >
+          💬 Message
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+let activeChatUserId = null;
+
+
+function getMessages(){
+  return getData("gbMessages",[]);
+}
+
+
+function chatKey(a,b){
+
+  return [a,b].sort().join("_");
+
+}
+
+
+function renderChatList(){
+
+  const area =
+    document.getElementById("chatList");
+
+  if(!area) return;
+
+
+  const search =
+    (
+      document.getElementById("chatSearch")
+      ?.value || ""
+    )
+    .toLowerCase()
+    .trim();
+
+
+  const users =
+    allUsers()
+    .filter(u =>
+      u.id !== currentUser().id
+    )
+    .filter(u =>
+      u.name.toLowerCase().includes(search) ||
+      u.email.toLowerCase().includes(search)
+    );
+
+
+  if(!users.length){
+
+    area.innerHTML =
+      `<div class="empty">
+        Miseensi hin jiru.
+      </div>`;
+
+    return;
+  }
+
+
+  area.innerHTML =
+    users.map(u => `
+
+      <div
+        class="chat-user"
+        onclick="startChat('${u.id}')"
+      >
+
+        <div class="avatar">
+          ${
+            u.photo
+            ?
+            `<img src="${u.photo}">`
+            :
+            escapeHTML(initials(u.name))
+          }
+        </div>
+
+        <div>
+          <strong>
+            ${escapeHTML(u.name)}
+          </strong>
+
+          <small style="display:block;color:#667085;">
+            ${escapeHTML(u.department || u.type)}
+          </small>
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function startChat(userId){
+
+  const settings =
+    getData(
+      "gbRegistrationSettings",
+      DEFAULT_REG_SETTINGS
+    );
+
+  if(!settings.messages){
+
+    alert("Messaging yeroo ammaa cufameera.");
+
+    return;
+  }
+
+
+  if(userId === currentUser().id){
+
+    alert("Ofii keetiif message erguu hin dandeessu.");
+
+    return;
+  }
+
+
+  const user =
+    allUsers().find(u => u.id === userId);
+
+  if(!user) return;
+
+
+  activeChatUserId = userId;
+
+  showPage("messages");
+
+  document.getElementById("chatHeader")
+    .textContent =
+      "💬 " + user.name;
+
+  renderMessages();
+
+}
+
+
+function renderMessages(){
+
+  const area =
+    document.getElementById("chatMessages");
+
+  if(!activeChatUserId){
+
+    area.innerHTML =
+      `<div class="empty">
+        Nama filadhu.
+      </div>`;
+
+    return;
+  }
+
+
+  const me =
+    currentUser().id;
+
+  const key =
+    chatKey(me,activeChatUserId);
+
+
+  const messages =
+    getMessages()
+    .filter(m => m.chatKey === key)
+    .sort(
+      (a,b) =>
+        new Date(a.createdAt) -
+        new Date(b.createdAt)
+    );
+
+
+  if(!messages.length){
+
+    area.innerHTML =
+      `<div class="empty">
+        Ergaan hin jiru. Haasaa jalqabi!
+      </div>`;
+
+    return;
+  }
+
+
+  area.innerHTML =
+    messages.map(m => `
+
+      <div class="msg ${m.senderId === me ? "me" : ""}">
+
+        <span>
+          ${escapeHTML(m.text)}
+        </span>
+
+      </div>
+
+    `).join("");
+
+
+  area.scrollTop =
+    area.scrollHeight;
+
+}
+
+
+/* =========================================================
+   SEND MESSAGE
+========================================================= */
+
+document.getElementById("messageForm")
+.addEventListener("submit",function(e){
+
+  e.preventDefault();
+
+  const settings =
+    getData(
+      "gbRegistrationSettings",
+      DEFAULT_REG_SETTINGS
+    );
+
+  if(!settings.messages){
+
+    alert("Messaging cufameera.");
+
+    return;
+  }
+
+
+  if(!activeChatUserId){
+
+    alert("Nama haasa'uu barbaaddu filadhu.");
+
+    return;
+  }
+
+
+  const input =
+    document.getElementById("messageInput");
+
+  const text =
+    input.value.trim();
+
+
+  if(!text) return;
+
+
+  const user =
+    currentUser();
+
+
+  const messages =
+    getMessages();
+
+
+  messages.push({
+
+    id:uid(),
+
+    chatKey:
+      chatKey(user.id,activeChatUserId),
+
+    senderId:user.id,
+
+    receiverId:activeChatUserId,
+
+    text,
+
+    createdAt:
+      new Date().toISOString()
+
+  });
+
+
+  saveData("gbMessages",messages);
+
+  input.value = "";
+
+  renderMessages();
+
+});
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function renderProfile(){
+
+  const user = currentUser();
+
+  if(!user) return;
+
+
+  document.getElementById("profileName")
+    .textContent = user.name;
+
+  document.getElementById("profileEmail")
+    .textContent = user.email;
+
+  document.getElementById("profileBio")
+    .value = user.bio || "";
+
+
+  const photo =
+    document.getElementById("profilePhoto");
+
+
+  if(user.photo){
+
+    photo.innerHTML =
+      `<img src="${user.photo}" alt="Profile">`;
+
+  }else{
+
+    photo.textContent =
+      initials(user.name);
+
+  }
+
+
+  const info =
+    document.getElementById("profileInfo");
+
+
+  info.innerHTML = `
+
+    <div class="info-item">
+      <strong>Gosa</strong>
+      <span>${escapeHTML(user.type)}</span>
+    </div>
+
+    <div class="info-item">
+      <strong>Role</strong>
+      <span>${escapeHTML(user.role)}</span>
+    </div>
+
+    <div class="info-item">
+      <strong>Education</strong>
+      <span>${escapeHTML(user.education || "-")}</span>
+    </div>
+
+    <div class="info-item">
+      <strong>Grade</strong>
+      <span>${escapeHTML(user.grade || "-")}</span>
+    </div>
+
+    <div class="info-item">
+      <strong>Institution</strong>
+      <span>${escapeHTML(user.institution || "-")}</span>
+    </div>
+
+    <div class="info-item">
+      <strong>Department</strong>
+      <span>${escapeHTML(user.department || "-")}</span>
+    </div>
+
+    <div class="info-item">
+      <strong>Study Year</strong>
+      <span>${escapeHTML(user.studyYear || "-")}</span>
+    </div>
+
+    <div class="info-item">
+      <strong>Status</strong>
+      <span>
+        ${
+          user.verified
+          ? "✓ Verified"
+          : "Unverified"
+        }
+      </span>
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SAVE PROFILE
+========================================================= */
+
+document.getElementById("profileForm")
+.addEventListener("submit",async function(e){
+
+  e.preventDefault();
+
+  const user =
+    currentUser();
+
+  if(!user) return;
+
+
+  user.bio =
+    document.getElementById("profileBio")
+    .value.trim();
+
+
+  const file =
+    document.getElementById("profileImage")
+    .files[0];
+
+
+  if(file){
+
+    user.photo =
+      await fileToDataURL(file);
+
+  }
+
+
+  if(user.id === "ADMIN"){
+
+    saveData("gbCurrentUser",user);
+
+  }else{
+
+    const users = allUsers();
+
+    const index =
+      users.findIndex(
+        u => u.id === user.id
+      );
+
+    if(index >= 0){
+
+      users[index] = {
+        ...users[index],
+        ...user
+      };
+
+      saveData("gbUsers",users);
+
+      saveData("gbCurrentUser",users[index]);
+
+    }
+
+  }
+
+
+  renderProfile();
+
+  renderMembers();
+
+  alert("Profile kee save ta'eera.");
+
+});
+
+
+/* =========================================================
+   MASTER CONTROL ACCESS
+========================================================= */
+
+function openMasterControl(){
+
+  const user =
+    currentUser();
+
+  if(
+    !user ||
+    user.id !== "ADMIN"
+  ){
+
+    alert("Founder qofaaf.");
+
+    return;
+  }
+
+
+  showPage("masterControl");
+
+}
+
+
+/* =========================================================
+   MASTER CONTROL REFRESH
+========================================================= */
+
+function mcRefresh(){
+
+  const user =
+    currentUser();
+
+  if(
+    !user ||
+    user.id !== "ADMIN"
+  ){
+
+    return;
+  }
+
+
+  const users =
+    allUsers();
+
+
+  document.getElementById("statTotal")
+    .textContent = users.length;
+
+
+  document.getElementById("statActive")
+    .textContent =
+      users.filter(
+        u => !u.blocked
+      ).length;
+
+
+  document.getElementById("statAdmins")
+    .textContent =
+      users.filter(
+        u => u.role === "admin"
+      ).length + 1;
+
+
+  document.getElementById("statVerified")
+    .textContent =
+      users.filter(
+        u => u.verified
+      ).length + 1;
+
+
+  document.getElementById("statWarnings")
+    .textContent =
+      users.filter(
+        u => u.warning
+      ).length;
+
+
+  document.getElementById("statBlocked")
+    .textContent =
+      users.filter(
+        u => u.blocked
+      ).length;
+
+
+  mcRenderMembers();
+
+  mcRenderAdmins();
+
+  mcRenderLogs();
+
+}
+
+
+/* =========================================================
+   MC MEMBER TABLE
+========================================================= */
+
+function mcRenderMembers(){
+
+  const area =
+    document.getElementById("mcMembersTable");
+
+  if(!area) return;
+
+
+  const search =
+    (
+      document.getElementById("mcMemberSearch")
+      ?.value || ""
+    )
+    .toLowerCase()
+    .trim();
+
+
+  const users =
+    allUsers()
+    .filter(u => {
+
+      const text = [
+
+        u.name,
+        u.email,
+        u.department,
+        u.institution,
+        u.type
+
+      ]
+      .join(" ")
+      .toLowerCase();
+
+      return text.includes(search);
+
+    });
+
+
+  if(!users.length){
+
+    area.innerHTML =
+      `<div class="empty">
+        Miseensi hin jiru.
+      </div>`;
+
+    return;
+  }
+
+
+  area.innerHTML = `
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Status</th>
+          <th>Role</th>
+          <th>Actions</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${
+          users.map(u => `
+
+            <tr>
+
+              <td>
+                ${escapeHTML(u.name)}
+              </td>
+
+              <td>
+                ${escapeHTML(u.email)}
+              </td>
+
+              <td>
+                ${escapeHTML(u.department || "-")}
+              </td>
+
+              <td>
+
+                ${
+                  u.blocked
+                  ?
+                  `<span class="badge badge-red">
+                    Blocked
+                  </span>`
+                  :
+                  `<span class="badge badge-green">
+                    Active
+                  </span>`
+                }
+
+                ${
+                  u.verified
+                  ?
+                  `<span class="badge badge-blue">
+                    Verified
+                  </span>`
+                  :
+                  ""
+                }
+
+                ${
+                  u.warning
+                  ?
+                  `<span class="badge badge-orange">
+                    Warning
+                  </span>`
+                  :
+                  ""
+                }
+
+              </td>
+
+              <td>
+                ${escapeHTML(u.role)}
+              </td>
+
+              <td>
+
+                <button
+                  class="small-btn btn-light"
+                  onclick="mcViewMember('${u.id}')"
+                >
+                  View
+                </button>
+
+                <button
+                  class="small-btn btn-green"
+                  onclick="verifyUser('${u.id}')"
+                >
+                  Verify
+                </button>
+
+                <button
+                  class="small-btn btn-orange"
+                  onclick="warnUser('${u.id}')"
+                >
+                  Warn
+                </button>
+
+                <button
+                  class="small-btn btn-red"
+                  onclick="toggleBlock('${u.id}')"
+                >
+                  ${
+                    u.blocked
+                    ? "Unblock"
+                    : "Block"
+                  }
+                </button>
+
+                <button
+                  class="small-btn btn-red"
+                  onclick="deleteUser('${u.id}')"
+                >
+                  Delete
+                </button>
+
+              </td>
+
+            </tr>
+
+          `).join("")
+        }
+
+      </tbody>
+
+    </table>
+
+  `;
+
+}
+
+
+/* =========================================================
+   VIEW MEMBER
+========================================================= */
+
+function mcViewMember(id){
+
+  const user =
+    allUsers().find(
+      u => u.id === id
+    );
+
+  if(!user) return;
+
+
+  alert(
+
+`PROFILE
+
+Maqaa: ${user.name}
+Email: ${user.email}
+Type: ${user.type}
+Education: ${user.education || "-"}
+Grade: ${user.grade || "-"}
+Institution: ${user.institution || "-"}
+Department: ${user.department || "-"}
+Study Year: ${user.studyYear || "-"}
+Role: ${user.role}
+Verified: ${user.verified ? "YES" : "NO"}
+Blocked: ${user.blocked ? "YES" : "NO"}
+Warning: ${user.warning || "None"}`
+  );
+
+}
+
+
+/* =========================================================
+   VERIFY USER
+========================================================= */
+
+function verifyUser(id){
+
+  const users =
+    allUsers();
+
+  const user =
+    users.find(
+      u => u.id === id
+    );
+
+  if(!user) return;
+
+
+  user.verified =
+    !user.verified;
+
+
+  saveData("gbUsers",users);
+
+  mcLog(
+    "VERIFY",
+    `${user.name} verification jijjiirame.`
+  );
+
+
+  mcRefresh();
+
+}
+
+
+/* =========================================================
+   WARN USER
+========================================================= */
+
+function warnUser(id){
+
+  const users =
+    allUsers();
+
+  const user =
+    users.find(
+      u => u.id === id
+    );
+
+  if(!user) return;
+
+
+  const reason =
+    prompt(
+      "Sababa warning galchi:",
+      user.warning || ""
+    );
+
+
+  if(reason === null) return;
+
+
+  user.warning =
+    reason.trim();
+
+
+  saveData("gbUsers",users);
+
+  mcLog(
+    "WARNING",
+    `${user.name} warning argate.`
+  );
+
+
+  mcRefresh();
+
+}
+
+
+/* =========================================================
+   BLOCK USER
+========================================================= */
+
+function toggleBlock(id){
+
+  const users =
+    allUsers();
+
+  const user =
+    users.find(
+      u => u.id === id
+    );
+
+  if(!user) return;
+
+
+  user.blocked =
+    !user.blocked;
+
+
+  saveData("gbUsers",users);
+
+  mcLog(
+    user.blocked
+      ? "BLOCK"
+      : "UNBLOCK",
+    `${user.name} ${user.blocked ? "blocked" : "unblocked"}.`
+  );
+
+
+  mcRefresh();
+
+}
+
+
+/* =========================================================
+   DELETE USER
+========================================================= */
+
+function deleteUser(id){
+
+  const users =
+    allUsers();
+
+  const user =
+    users.find(
+      u => u.id === id
+    );
+
+  if(!user) return;
+
+
+  const ok =
+    confirm(
+      `Dhugumaan ${user.name} delete gochuu barbaaddaa?`
+    );
+
+
+  if(!ok) return;
+
+
+  const filtered =
+    users.filter(
+      u => u.id !== id
+    );
+
+
+  saveData("gbUsers",filtered);
+
+  mcLog(
+    "DELETE",
+    `${user.name} haqame.`
+  );
+
+
+  mcRefresh();
+
+}
+
+
+/* =========================================================
+   ADMIN MANAGEMENT
+========================================================= */
+
+function mcRenderAdmins(){
+
+  const area =
+    document.getElementById("mcAdminsTable");
+
+  if(!area) return;
+
+
+  const admins =
+    allUsers()
+    .filter(
+      u => u.role === "admin"
+    );
+
+
+  area.innerHTML = `
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Action</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+
+          <td>
+            ${escapeHTML(founder.name)}
+          </td>
+
+          <td>
+            ${escapeHTML(founder.email)}
+          </td>
+
+          <td>
+            👑 FOUNDER
+          </td>
+
+          <td>
+            <span class="badge badge-blue">
+              Protected
+            </span>
+          </td>
+
+        </tr>
+
+        ${
+          admins.map(u => `
+
+            <tr>
+
+              <td>
+                ${escapeHTML(u.name)}
+              </td>
+
+              <td>
+                ${escapeHTML(u.email)}
+              </td>
+
+              <td>
+                ${escapeHTML(u.role)}
+              </td>
+
+              <td>
+
+                <button
+                  class="small-btn btn-red"
+                  onclick="mcRemoveAdmin('${u.id}')"
+                >
+                  Remove Admin
+                </button>
+
+              </td>
+
+            </tr>
+
+          `).join("")
+        }
+
+      </tbody>
+
+    </table>
+
+    <p style="margin-top:12px;color:#667085;">
+      Member tokko admin gochuuf table Member Management keessaa
+      <b>Make Admin</b> fayyadami.
+    </p>
+
+  `;
+
+
+  /* Add make admin buttons to member table */
+
+  const users =
+    allUsers()
+    .filter(
+      u => u.role !== "admin"
+    );
+
+
+  /* We don't alter table here; separate button is provided below */
+
+  if(users.length){
+
+    area.innerHTML += `
+
+      <div style="margin-top:15px;">
+
+        <select id="makeAdminSelect"
+          style="
+            padding:10px;
+            border:1px solid #e5e7eb;
+            border-radius:8px;
+            max-width:350px;
+          "
+        >
+
+          <option value="">
+            Member filadhu
+          </option>
+
+          ${
+            users.map(u => `
+              <option value="${u.id}">
+                ${escapeHTML(u.name)}
+              </option>
+            `).join("")
+          }
+
+        </select>
+
+        <button
+          class="btn btn-purple"
+          onclick="mcMakeAdmin()"
+        >
+          🛡️ Make Admin
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   MAKE ADMIN
+========================================================= */
+
+function mcMakeAdmin(){
+
+  const select =
+    document.getElementById(
+      "makeAdminSelect"
+    );
+
+  if(!select) return;
+
+
+  const id =
+    select.value;
+
+  if(!id){
+
+    alert("Member filadhu.");
+
+    return;
+  }
+
+
+  const users =
+    allUsers();
+
+  const user =
+    users.find(
+      u => u.id === id
+    );
+
+  if(!user) return;
+
+
+  user.role =
+    "admin";
+
+
+  saveData("gbUsers",users);
+
+  mcLog(
+    "ADMIN",
+    `${user.name} admin godhame.`
+  );
+
+
+  mcRefresh();
+
+}
+
+
+/* =========================================================
+   REMOVE ADMIN
+========================================================= */
+
+function mcRemoveAdmin(id){
+
+  const users =
+    allUsers();
+
+  const user =
+    users.find(
+      u => u.id === id
+    );
+
+  if(!user) return;
+
+
+  user.role =
+    "member";
+
+
+  saveData("gbUsers",users);
+
+  mcLog(
+    "ADMIN",
+    `${user.name} admin irraa kaafame.`
+  );
+
+
+  mcRefresh();
+
+}
+
+
+/* =========================================================
+   CONTENT CONTROL
+========================================================= */
+
+function mcShowPosts(){
+
+  const area =
+    document.getElementById(
+      "mcPostsArea"
+    );
+
+  const posts =
+    getPosts()
+    .sort(
+      (a,b) =>
+        new Date(b.createdAt) -
+        new Date(a.createdAt)
+    );
+
+
+  if(!posts.length){
+
+    area.innerHTML =
+      `<div class="empty">
+        Postiin hin jiru.
+      </div>`;
+
+    return;
+  }
+
+
+  area.innerHTML =
+    posts.map(p => `
+
+      <div class="log-item">
+
+        <b>
+          ${escapeHTML(p.authorName)}
+        </b>
+
+        <p style="margin:5px 0;">
+          ${escapeHTML(p.text)}
+        </p>
+
+        <small>
+          ${formatDate(p.createdAt)}
+        </small>
+
+        <br>
+
+        <button
+          class="small-btn btn-red"
+          onclick="mcDeletePost('${p.id}')"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function mcDeletePost(id){
+
+  const ok =
+    confirm("Post kana haqaa?");
+
+  if(!ok) return;
+
+
+  const posts =
+    getPosts()
+    .filter(
+      p => p.id !== id
+    );
+
+
+  saveData("gbPosts",posts);
+
+  mcLog(
+    "POST DELETE",
+    "Post tokko haqame."
+  );
+
+
+  renderPosts();
+
+  mcShowPosts();
+
+}
+
+
+function mcDeleteAllPosts(){
+
+  const ok =
+    confirm(
+      "Postii HUNDA haquu barbaaddaa?"
+    );
+
+  if(!ok) return;
+
+
+  saveData("gbPosts",[]);
+
+  mcLog(
+    "POST DELETE ALL",
+    "Postiin hundi haqame."
+  );
+
+
+  renderPosts();
+
+  mcShowPosts();
+
+}
+
+
+/* =========================================================
+   ANNOUNCEMENT
+========================================================= */
+
+function mcAnnouncementBox(){
+
+  const text =
+    prompt(
+      "Announcement barreessi:"
+    );
+
+
+  if(!text || !text.trim()) return;
+
+
+  const announcements =
+    getData(
+      "gbAnnouncements",
+      []
+    );
+
+
+  announcements.unshift({
+
+    id:uid(),
+
+    text:text.trim(),
+
+    createdAt:
+      new Date().toISOString()
+
+  });
+
+
+  saveData(
+    "gbAnnouncements",
+    announcements
+  );
+
+
+  mcLog(
+    "ANNOUNCEMENT",
+    "Announcement haaraan maxxanfame."
+  );
+
+
+  alert(
+    "Announcement save ta'eera."
+  );
+
+}
+
+
+/* =========================================================
+   MESSAGE ACTIVITY
+========================================================= */
+
+function mcShowMessageActivity(){
+
+  const area =
+    document.getElementById(
+      "mcMessageActivity"
+    );
+
+  const messages =
+    getMessages()
+    .sort(
+      (a,b) =>
+        new Date(b.createdAt) -
+        new Date(a.createdAt)
+    );
+
+
+  if(!messages.length){
+
+    area.innerHTML =
+      `<div class="empty">
+        Message activity hin jiru.
+      </div>`;
+
+    return;
+  }
+
+
+  const users =
+    allUsers();
+
+
+  area.innerHTML =
+    messages.slice(0,100)
+    .map(m => {
+
+      const sender =
+        m.senderId === "ADMIN"
+        ? founder.name
+        : (
+            users.find(
+              u => u.id === m.senderId
+            )?.name || "Unknown"
+          );
+
+
+      return `
+
+        <div class="log-item">
+
+          <b>
+            ${escapeHTML(sender)}
+          </b>
+
+          <p>
+            ${escapeHTML(m.text)}
+          </p>
+
+          <small>
+            ${formatDate(m.createdAt)}
+          </small>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   SYSTEM SETTINGS
+========================================================= */
+
+function loadSystemSettings(){
+
+  const settings =
+    getData(
+      "gbSystemSettings",
+      DEFAULT_SETTINGS
+    );
+
+
+  document.getElementById(
+    "settingPortalName"
+  ).value =
+    settings.portalName;
+
+
+  document.getElementById(
+    "settingMotto"
+  ).value =
+    settings.motto;
+
+
+  document.getElementById(
+    "settingDonationText"
+  ).value =
+    settings.donationText;
+
+}
+
+
+function mcSaveSettings(){
+
+  const settings = {
+
+    portalName:
+      document.getElementById(
+        "settingPortalName"
+      ).value.trim(),
+
+    motto:
+      document.getElementById(
+        "settingMotto"
+      ).value.trim(),
+
+    donationText:
+      document.getElementById(
+        "settingDonationText"
+      ).value.trim()
+
+  };
+
+
+  if(!settings.portalName){
+
+    alert("Portal name duwwaa ta'uu hin qabu.");
+
+    return;
+  }
+
+
+  saveData(
+    "gbSystemSettings",
+    settings
+  );
+
+
+  renderEverything();
+
+  loadSystemSettings();
+
+  mcLog(
+    "SETTINGS",
+    "System settings fooyya'an."
+  );
+
+
+  alert("Settings save ta'an.");
+
+}
+
+
+/* =========================================================
+   REGISTRATION SETTINGS
+========================================================= */
+
+function loadRegistrationSettings(){
+
+  const settings =
+    getData(
+      "gbRegistrationSettings",
+      DEFAULT_REG_SETTINGS
+    );
+
+
+  document.getElementById(
+    "settingRegistration"
+  ).checked =
+    settings.registration;
+
+
+  document.getElementById(
+    "settingVerification"
+  ).checked =
+    settings.verification;
+
+
+  document.getElementById(
+    "settingMessages"
+  ).checked =
+    settings.messages;
+
+}
+
+
+function mcSaveRegistrationSettings(){
+
+  const settings = {
+
+    registration:
+      document.getElementById(
+        "settingRegistration"
+      ).checked,
+
+    verification:
+      document.getElementById(
+        "settingVerification"
+      ).checked,
+
+    messages:
+      document.getElementById(
+        "settingMessages"
+      ).checked
+
+  };
+
+
+  saveData(
+    "gbRegistrationSettings",
+    settings
+  );
+
+
+  renderEverything();
+
+  loadRegistrationSettings();
+
+  mcLog(
+    "REGISTRATION SETTINGS",
+    "Registration settings fooyya'an."
+  );
+
+
+  alert(
+    "Registration settings save ta'an."
+  );
+
+}
+
+
+/* =========================================================
+   ACTIVITY LOG
+========================================================= */
+
+function mcLog(action,description){
+
+  const logs =
+    getData(
+      "gbActivityLogs",
+      []
+    );
+
+
+  logs.unshift({
+
+    id:uid(),
+
+    action,
+
+    description,
+
+    createdAt:
+      new Date().toISOString()
+
+  });
+
+
+  saveData(
+    "gbActivityLogs",
+    logs.slice(0,300)
+  );
+
+}
+
+
+function mcRenderLogs(){
+
+  const area =
+    document.getElementById(
+      "activityLogs"
+    );
+
+  if(!area) return;
+
+
+  const logs =
+    getData(
+      "gbActivityLogs",
+      []
+    );
+
+
+  if(!logs.length){
+
+    area.innerHTML =
+      `<div class="empty">
+        Activity log hin jiru.
+      </div>`;
+
+    return;
+  }
+
+
+  area.innerHTML =
+    logs.slice(0,100)
+    .map(log => `
+
+      <div class="log-item">
+
+        <b>
+          ${escapeHTML(log.action)}
+        </b>
+
+        —
+        ${escapeHTML(log.description)}
+
+        <br>
+
+        <small>
+          ${formatDate(log.createdAt)}
+        </small>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function formatDate(date){
+
+  try{
+
+    return new Date(date)
+      .toLocaleString();
+
+  }catch(e){
+
+    return date;
+
+  }
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    /* Defaults */
+
+    if(
+      !localStorage.getItem(
+        "gbSystemSettings"
+      )
+    ){
+
+      saveData(
+        "gbSystemSettings",
+        DEFAULT_SETTINGS
+      );
+
+    }
+
+
+    if(
+      !localStorage.getItem(
+        "gbRegistrationSettings"
+      )
+    ){
+
+      saveData(
+        "gbRegistrationSettings",
+        DEFAULT_REG_SETTINGS
+      );
+
+    }
+
+
+    /* Student fields */
+
+    document.getElementById("regType")
+      .addEventListener(
+        "change",
+        function(){
+
+          document.getElementById(
+            "studentFields"
+          )
+          .classList.toggle(
+            "hidden",
+            this.value !== "STUDENT"
+          );
+
+        }
+      );
+
+
+    /* Settings */
+
+    loadSystemSettings();
+
+    loadRegistrationSettings();
+
+
+    /* Existing session */
+
+    const user =
+      currentUser();
+
+
+    if(user){
+
+      if(
+        user.id !== "ADMIN" &&
+        user.blocked
+      ){
+
+        logout();
+
+      }else{
+
+        enterPortal();
+
+      }
+
+    }else{
+
+      showLogin();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
